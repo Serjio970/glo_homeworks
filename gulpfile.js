@@ -1,38 +1,27 @@
-const gulp = require('gulp');
+const {src, dest, watch} = require('gulp');
+const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
 
-gulp.task('hello', function(){
-  console.log('Привет, мир!');
-  done();
-})
+
 
 // Static server
-gulp.task('browser-sync', function() {
+function bs() {
+  serveSass();
   browserSync.init({
       server: {
           baseDir: "./"
       }
   });
-  gulp.watch("./*.html").on('change', browserSync.reload);
-});
+  watch("./*.html").on('change', browserSync.reload);
+  watch("./sass/**/*.sass", serveSass);
+  watch("./js/*.js").on('change', browserSync.reload);
+};
 
-var gulp = require('gulp');
-var minify = require('gulp-minify');
+function serveSass() {
+  return src("./sass/*.sass")
+    .pipe(sass())
+    .pipe(dest("./css"))
+    .pipe(browserSync.stream());
+}
 
-gulp.task('min-js', function() {
-    return gulp.src('lib/*.js')
-        .pipe(minify({
-            ext: {
-                min: '.min.js'
-            },
-            ignoreFiles: ['-min.js']
-        }))
-        .pipe(gulp.dest('lib'))
-});
-
-gulp.task('watch', function(){
-  gulp.watch('lib/*.js', ['min-js']); 
-  // Other watchers
-});
-
-gulp.task('default', ['min-js', 'watch']);
+exports.serve = bs;
