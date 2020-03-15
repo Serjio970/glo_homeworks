@@ -605,6 +605,8 @@ img {
   text-align: center; }
 
 .modal {
+  opacity: 0;
+  visibility: hidden;
   position: fixed;
   z-index: 199;
   left: 0;
@@ -616,9 +618,12 @@ img {
   display: flex;
   justify-content: center;
   align-items: center; }
+  .modal--visible {
+    opacity: 1;
+    visability: visible; }
   .modal__dialog {
-    max-width: 36.357rem;
     position: relative;
+    max-width: 36.36rem;
     background: #131313 url(../img/bg-lines.svg) no-repeat center;
     padding: 2.357rem 3.5rem 1.928rem;
     color: #fff; }
