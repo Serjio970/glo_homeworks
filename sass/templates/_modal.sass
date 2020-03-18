@@ -1,6 +1,6 @@
 .modal
-  opacity: 0
-  visibility: hidden
+  opacity: 1
+  visibility: visible
   position: fixed
   z-index: 199
   left: 0
@@ -42,7 +42,10 @@
     display: flex
     flex-direction: column
   &__input
-    margin-bottom: 3.428em
+    &-group
+      display: 
+      flex-direction: column
+      margin-bottom: 3.428em
     &:last-of-type
       margin-bottom: 1rem
   &__policy
