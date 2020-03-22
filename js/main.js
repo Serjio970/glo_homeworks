@@ -1,14 +1,14 @@
-$(document).ready(function () {
+$(document).ready(function() {
   var modal = $('.modal'),
-      modalBtn = $('[data-toggle="modal"]'),
-      closeBtn = $('.modal__close');
+    modalBtn = $('[data-toggle = "modal"]'),
+    closeBtn = $('.modal__close');
 
 
-      modalBtn.on('click', function () {
-      modal.toggleClass('modal--visible');
+  modalBtn.on('click', function() {
+    modal.toggleClass('modal--visible');
   });
-      closeBtn.on('click', function () {
-      modal.toggleClass('modal--visible');
+  closeBtn.on('click', function() {
+    modal.toggleClass('modal--visible');
   });
 
   var mySwiper = new Swiper ('.swiper-container', {
@@ -65,4 +65,40 @@ $(document).ready(function () {
 
   $('[type=tel]').mask('+7(000) 00-00-000', {placeholder: "+7 (___) __-__-___"});
 
+
+  //создани карты
+  ymaps.ready(function () {
+    var myMap = new ymaps.Map('map', {
+            center: [55.751574, 37.573856],
+            zoom: 9
+        }, {
+            searchControlProvider: 'yandex#search'
+        }),
+
+        // Создаём макет содержимого.
+        MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+            '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+        ),
+
+        myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+            hintContent: 'Наш офис',
+            balloonContent: 'Вход со двора'
+        }, {
+            // Опции.
+            // Необходимо указать данный тип макета.
+            iconLayout: 'default#image',
+            // Своё изображение иконки метки.
+            iconImageHref: 'img/location.png',
+            // Размеры метки.
+            iconImageSize: [32, 32],
+            // Смещение левого верхнего угла иконки относительно
+            // её "ножки" (точки привязки).
+            iconImageOffset: [-5, -38]
+        });
+
+    myMap.geoObjects
+        .add(myPlacemark)
+        .add(myPlacemarkWithContent);
 });
+
+});7

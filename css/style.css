@@ -799,10 +799,11 @@ img {
   .footer__menu {
     background-color: #131313;
     padding: 4.285rem 0; }
+  .footer__map {
+    margin-bottom: 4rem;
+    min-height: 465px; }
 
 .modal {
-  opacity: 1;
-  visibility: visible;
   position: fixed;
   z-index: 199;
   left: 0;
@@ -814,9 +815,6 @@ img {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .modal--visible {
-    opacity: 1;
-    visability: visible; }
   .modal__dialog {
     position: relative;
     max-width: 36.36rem;
